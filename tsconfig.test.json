@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "ignoreDeprecations": "6.0",
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": ".test-build",
+    "types": [],
+    "rootDir": "src"
+  },
+  "include": [
+    "src/domain.ts",
+    "src/reminder-plan.ts",
+    "src/discovery.ts",
+    "src/timer.ts",
+    "src/measurements.ts",
+    "src/habit-templates.ts",
+    "src/widget-data.ts",
+    "src/theme.ts"
+  ]
+}

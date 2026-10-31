@@ -1,0 +1,5 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/habit_widget_root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp" android:background="@drawable/habit_widget_bg">
+<TextView android:id="@+id/habit_widget_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/habit_widget_name" android:textColor="#266C53" android:textSize="16sp" android:textStyle="bold" android:maxLines="1" android:ellipsize="end"/>
+<LinearLayout android:id="@+id/habit_widget_rows" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="vertical"/>
+<TextView android:id="@+id/habit_widget_more" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="32dp" android:gravity="center_vertical" android:textColor="#266C53" android:textSize="12sp" android:maxLines="1" android:ellipsize="end" android:visibility="gone"/>
+</LinearLayout>
