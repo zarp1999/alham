@@ -205,6 +205,7 @@ export const en: Record<string, string> = {
   "通知の時（0〜23）": "Hour (0–23)",
   "時": "hour",
   "通知の分（0〜59）": "Minute (0–59)",
+  "0〜23時、0〜59分で入力してください。": "Enter an hour from 0–23 and minute from 0–59.",
   "時刻を確定（24時間表記）": "Confirm time (24-hour clock)",
   "0〜23時、0〜59分で入力し「時刻を確定」を押してください。": "Enter an hour from 0–23 and minute from 0–59, then confirm.",
   "週に○回の習慣は、毎日この時刻に通知します。": "For weekly habits, a reminder is sent daily at this time.",

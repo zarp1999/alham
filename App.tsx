@@ -12,7 +12,7 @@ import { ReminderField } from './src/ReminderField';
 import { validReminder } from './src/reminder-plan';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, AppState, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 import { dateKey, fromKey, isDue, scheduleAt, scheduleLabel, updateHabit, weeklyCount, withEntry, type Data, type Habit, type Schedule } from './src/domain';
@@ -238,7 +238,7 @@ function AppContent() {
       </View></View>
     </Modal>
     <Modal visible={!!editor} animationType="slide" onRequestClose={() => setEditor(null)}>
-      <SafeAreaView style={s.safe}><KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <SafeAreaProvider><SafeAreaView style={s.safe}><KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View style={[s.brand, { justifyContent: 'space-between' }]}><Text style={s.section}>{editor === 'new' ? tr("新しい習慣") : tr("習慣を編集")}</Text><Pressable accessibilityRole="button" accessibilityLabel={tr("編集を閉じる")} onPress={() => setEditor(null)} style={s.checkHit}><Icon name="close" /></Pressable></View>
         {!!notificationError && <View style={{ padding: 14, backgroundColor: C.gold }}><Text accessibilityLiveRegion="polite" style={s.body}>{notificationError}</Text></View>}
     <ScrollView key={editor === 'new' && choosingTemplate ? 'templates' : 'habit-form'} contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
@@ -257,7 +257,7 @@ function AppContent() {
           <Button disabled={(goal.kind !== 'check' && !draftGoal(goal)) || (reminder !== undefined && !validReminder(reminder)) || !name.trim() || (kind === 'days' && !days.length)} label={tr("保存する")} onPress={saveHabit} />
           </>}
         </ScrollView>
-      </KeyboardAvoidingView></SafeAreaView>
+      </KeyboardAvoidingView></SafeAreaView></SafeAreaProvider>
     </Modal>
   </SafeAreaView>;
 }

@@ -62,7 +62,6 @@ export default function Discover() {
       {step === 0 && <View style={s.languageRow}>{([{id:'ja', label:'日本語'}, {id:'mn', label:'Монгол'}, {id:'en', label:'English'}] as const).map(option => <Pressable key={option.id} accessibilityRole="button" accessibilityLabel={option.label} accessibilityState={{selected: language === option.id}} onPress={() => { try { writePreference('language', option.id); setLanguage(option.id); } catch { Alert.alert(tr('保存できませんでした'), tr('もう一度お試しください。')); } }} style={[s.languageChoice, language === option.id && s.selected]}><Text style={s.languageText}>{option.label}</Text></Pressable>)}</View>}
       <View style={s.progress}>{titles.map((title, i) => <View key={title} style={[s.segment, i <= step && { backgroundColor: themeColor('#266C53') }]} />)}</View>
       <ScrollView key={step} contentContainerStyle={s.content} keyboardShouldPersistTaps="handled">
-        <Text style={s.eyebrow}>{step === 0 ? tr("小さな一歩を、一緒に探そう") : tr("小さく、長く、自分のペースで。")}</Text>
         <Text accessibilityRole="header" style={s.title}>{titles[step]}</Text><Text style={[s.body, { marginBottom: 24 }]}>{captions[step]}</Text>
         {step === 0 && discoveryGoals.map((item, index) => option(tr(item.label), goal === index, () => setGoal(index), item.category ? tr(item.category) : undefined))}
         {step === 1 && <HabitTemplatePicker showHeading={false} initialCategory={goal === null ? '' : discoveryGoals[goal].category} onSelect={selectIdea} onCustom={() => { setName(''); setAction(''); setCategory(goal === null ? '暮らし' : discoveryGoals[goal].category || '暮らし'); setMeasure(goalDraft()); setStep(2); }} />}
@@ -81,7 +80,6 @@ export default function Discover() {
           {option(tr("週に○回"), kind === 'weekly', () => setKind('weekly'))}
           {kind === 'weekly' && <View style={s.choices}>{[1, 2, 3, 4, 5, 6, 7].map(n => <Pressable key={n} accessibilityRole="button" accessibilityState={{ selected: frequency === n }} onPress={() => setFrequency(n)} style={[s.choice, frequency === n && s.selected]}><Text style={s.optionTitle}>{n}{tr("回")}</Text></Pressable>)}</View>}
           <ReminderField value={reminder} onChange={setReminder} weekly={kind === 'weekly'} />
-          <View style={s.note}><Text style={s.optionTitle}>{tr("休んでも、またここから。")}</Text><Text style={s.body}>{tr("登録後も内容や頻度を変更できます。")}</Text></View>
         </>}
         {step !== 1 && <Pressable accessibilityRole="button" accessibilityState={{ disabled: !canContinue || saving }} disabled={!canContinue || saving} style={[s.button, (!canContinue || saving) && { opacity: .4 }]} onPress={() => step === 3 ? save() : setStep(step + 1)}><Text style={s.buttonText}>{saving ? tr("保存しています…") : step === 3 ? tr("この習慣で始める") : tr("次へ")}</Text></Pressable>}
         {step > 0 && <Pressable accessibilityRole="button" disabled={saving} style={s.back} onPress={() => setStep(step - 1)}><Text style={s.link}>{tr("戻る")}</Text></Pressable>}
